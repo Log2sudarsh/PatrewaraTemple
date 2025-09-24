@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Manage User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/bilvaUser.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style=" background-color: #03a82f; background-image: linear-gradient(to bottom right, #03a82f,green); ">
+        <p class="logo-text"> Juice Bilva Plantation Drive <!--<img src="Images/Logo-Icon.png" alt="Krooshi Logo" height="53" width="63" class="logo img-fluid">--> </p>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        
+        </div>
+    </nav>
+    <h5 class="text-center mt-2">🌿 User Requisation for Juice Bilva Grafts</h5>
+
+    <div class="container my-4">
+       
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <button id="addUserBtn" class="btn btn-success d-flex btn-sm align-items-center" data-bs-toggle="modal" data-bs-target="#userModal">
+                <i class="bi bi-plus-circle me-1"></i>
+                <span>Add User</span>
+            </button>
+            <span id="totalPlants" class="badge bg-success fs-7">Total Grafts Needed: 0</span>
+        </div>
+
+        <div class="table-active">
+            <table class="table table-bordered table-hover" id="userTable">
+                <thead class="table-success">
+                    <tr>
+                        <th style="width: 20px;"></th>
+                        <th>Name</th>
+                        <th>Place</th>
+                        <th>Grafts#</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically injected via bilvaUser.js -->
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <form id="userForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="userModalLabel">Add/Edit User Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="userId">
+
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <input type="text" id="firstName" class="form-control" placeholder="First Name" required>
+                                <div class="invalid-feedback">First Name is required.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <input type="text" id="lastName" class="form-control" placeholder="Last Name">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <select id="gender" class="form-select" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="invalid-feedback">Gender is required.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <input type="text" id="contactNumber" class="form-control" placeholder="10-digit Contact Number" required>
+                                <div class="invalid-feedback">Valid 10-digit contact number is required.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <input type="text" id="place" class="form-control" placeholder="Place" required>
+                                <div class="invalid-feedback">Place is required.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <input type="text" id="designation" class="form-control" placeholder="Occupation">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" id="institution" class="form-control" placeholder="Institution">
+                            </div>
+                            <div class="col-12">
+                                <textarea id="address" class="form-control" rows="2" placeholder="Address"></textarea>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <input type="number" id="plantsNeeded" class="form-control" placeholder="Plants Needed" required>
+                                <div class="invalid-feedback">Valid number of Grafts is required.</div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <select id="variety" class="form-select">
+                                    <option selected>Any Variety</option>
+                                    <option>Narendra Bael -5</option>
+                                    <option>Narendra Bael -7</option>
+                                    <option>Narendra Bael -9</option>
+                                    <option>Narendra Bael -16</option>
+                                    <option>Narendra Bael -17</option>
+                                    <option>Pant Aprana</option>
+                                    <option>Pant Sujata</option>
+                                    <option>Pant Shivangi</option>
+                                    <option>Pant Urvashi</option>
+                                    <option>CISHB -1</option>
+                                    <option>CISHB -2</option>
+                                    <option>Goma Yashi</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <select id="deliveryStatus" class="form-select">
+                                    <option selected>Order Pending</option>
+                                    <option>Order Placed</option>
+                                    <option>Order Processing</option>
+                                    <option>Order Delivered</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" id="saveBtn" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../js/bilvaUser.js"></script>
+</body>
+</html>

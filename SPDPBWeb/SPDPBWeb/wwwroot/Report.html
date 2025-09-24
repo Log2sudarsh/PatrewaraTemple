@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ಬಿಲ್ವ ಪತ್ರಿ ವನ</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/report.css"> <!-- External CSS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="js/report.js"></script> <!-- Link to external JavaScript file -->
+</head>
+<body style="font-size:10pt;font-weight:normal">
+    <!-- Navigation -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Banner -->
+    <div id="banner-placeholder"></div>
+
+    <div class="container">
+
+        <h4 class="text-center section-title">ದಾನಿಗಳ ದೇಣಿಗೆ ವಿವರಗಳು</h4>
+
+        <!-- Filter Menu Button -->
+        <div id="filter-menu-toggle" class="btn btn-primary btn-filter mb-2">
+            <i class="fas fa-filter"></i>ಫಿಲ್ಟರ <!-- Font Awesome filter icon -->
+        </div>
+        <div class="filter-section" id="filter-section" style="display: none;">
+            <!-- Filter Form -->
+            <div id="filter-form" style="display: none;">
+                <input type="text" id="filterNameKn" class="form-control mb-2 input-style" placeholder="ದಾನಿಗಳ ಹೆಸರು">
+                <input type="text" id="filterPlace" class="form-control mb-2 input-style" placeholder="ಸ್ಥಳ">
+                <input type="text" id="filterContactNo" class="form-control mb-2 input-style" placeholder="ಸಂಪರ್ಕ ಸಂಖ್ಯೆ">
+                <input type="text" id="filterPledgeAmount" class="form-control mb-2 input-style" placeholder="ವಾಗ್ದನ ಮೊತ್ತ">
+                <input type="text" id="filterDonatedAmount" class="form-control mb-2 input-style" placeholder="ದೇಣಿಗೆ ಮೊತ್ತ">
+
+                <!-- Radio Buttons for Filters -->
+                <div class="form-group">
+                    <div>
+                        <label style="font-weight:bold">ದಾನಿಗಳ ವಿಧ:</label>
+                        <label><input type="radio" name="userType" value="Farmer"> Farmer</label>
+                        <label><input type="radio" name="userType" value="Employee"> Employee</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label style="font-weight:bold">ಪಾವತಿ ಸ್ಥಿತಿ:</label>
+                        <label><input type="radio" name="paymentStatus" value="Paid"> Paid</label>
+                        <label><input type="radio" name="paymentStatus" value="Pending"> Pending</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label style="font-weight:bold">ರಶೀದಿ ವಿಧ:</label>
+                        <label><input type="radio" name="receiptType" value="OLD"> OLD</label>
+                        <label><input type="radio" name="receiptType" value="NEW"> NEW</label>
+                    </div>
+                </div>
+
+                <!-- Clear Filters Button (Icon) -->
+                <button id="clearFilters" class="btn btn-clear btn-primary">
+                    <i class="fas fa-times-circle"></i> ಕ್ಲಿಯರ <!-- Font Awesome clear icon -->
+                </button>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section mt-3">
+            <p><strong>Total Number of Donors:</strong> <span id="totalDonors">0</span></p>
+            <p><strong>Total Amount Paid:</strong> ₹<span id="totalAmountPaid">0</span></p>
+            <p><strong>Total Amount Pending:</strong> ₹<span id="totalAmountPending">0</span></p>
+            <p><strong>Total Amount:</strong> ₹<span id="totalAmount">0</span></p>
+        </div>
+
+        <!-- Cards Container -->
+        <div id="cards-container" class="row">
+            <!-- Cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+/* Custom CSS for Krooshi */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.jumbotron {
+    background-color: #006400; /* Dark Green */
+    color: white;
+}
+
+.feature img {
+    width: 100px;
+    height: 100px;
+}
+
+.feature h4 {
+    margin-top: 15px;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+.nav-item-style {
+    font-size: 14pt;
+    color: red;
+    font-weight: bold;
+}
+
+.nav-item-link-style {
+    color: white !important;
+}
+
+.title-font-style {
+    color: green;
+    font-weight: bold;
+}
+
+.para-text-style {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+    line-height: 35px;
+}

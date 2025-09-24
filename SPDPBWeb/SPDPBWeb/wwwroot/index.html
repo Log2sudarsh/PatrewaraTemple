@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ಬಿಲ್ವ ಪತ್ರಿ ವನ</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="css/dnoation_index.css"> <!-- External CSS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Banner -->
+    <div id="banner-placeholder"></div>
+
+    <!-- Carousel -->
+    <!--<div id="carousel-placeholder"></div>-->
+    <!-- Contact Us Section -->
+    <section class="container py-2">
+        <h4 class="text-center section-title">ದಾನಿಗಳ ದೇಣಿಗೆ ವಿವರಗಳು</h4>
+
+        <table style="margin-bottom: 8px; width: 100%; font-size: 10pt;">
+            <thead style="background-color:#5477cf;color:white">
+                <tr>
+                    <th style="width:34%;">ಒಟ್ಟು ಸಂಗ್ರಹವಾದ ದೇಣಿಗೆ</th>
+                    <th style="width:33%">ಬಾಕಿ ಇರುವ ದೇಣಿಗೆ</th>
+                    <th style="width:33%"> ಒಟ್ಟು ಮೊತ್ತ  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-success" id="totalPaid"> </td>
+                    <td class="text-danger" id="totalPending"></td>
+                    <td class="text-info" id="totalAmount"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="ನಿಮ್ಮ ಹೆಸರನ್ನು ಹುಡುಕಿ - ಕನ್ನಡ ಅಥವಾ ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಟೈಪ್ ಮಾಡಬಹುದು" class="form-control" style="margin-bottom: 10px; border:solid 1px #2e67fc;font-size:9pt;">
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="text-center" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <table id="donationsTable" class="table table-bordered table-striped" style="font-size:10pt;">
+            <thead style="background-color:green;color:white;">
+                <tr>
+                    <th></th>
+                    <th>ದಾನಿಗಳ ಹೆಸರು</th>
+                    <th>
+                        ವಾಗ್ದಾನ ಮೊತ್ತ
+                        <span class="asc-arrow" onclick="sortTableByPledge(2, 'asc')">
+                            <i class="fas fa-chevron-up"></i>
+                        </span>
+                        <span class="desc-arrow" onclick="sortTableByPledge(2, 'desc')">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </th>
+                    <th>
+                        ಒಟ್ಟು ದೇಣಿಗೆ
+                        <span class="asc-arrow" onclick="sortTableByAmount(3, 'asc')">
+                            <i class="fas fa-chevron-up"></i>
+                        </span>
+                        <span class="desc-arrow" onclick="sortTableByAmount(3, 'desc')">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </th>
+
+                    <th style="display:none"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+
+        <div class="modal fade" id="donationsModal" tabindex="-1" role="dialog" aria-labelledby="donationsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:forestgreen;color:white;">
+                        <h5 class="modal-title" id="donationsModalLabel">ದೇಣಿಗೆ ಕಂತುಗಳ ವಿವರಗಳು</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- User Details Section -->
+                        <div id="userDetailsSection">
+                            <p><strong>ದಾನಿಗಳ ಹೆಸರು:</strong> <span id="modalNameKn"></span> - (<span id="modalUserId"></span>)</p>
+                            <p><strong>ಸ್ಥಳ:</strong> <span id="modalPlace"></span></p>
+                            <p><strong>ಸಂಪರ್ಕ ಸಂಖ್ಯೆ:</strong> <span id="modalContactNo"></span></p>
+                            <p><strong>ವಾಗ್ದಾನದ ಮೊತ್ತ:</strong> <span id="modalPledgeAmount"></span></p>
+                        </div>
+
+                        <!-- Donation Details Section -->
+                        <table id="detailedDonationsTable" class="table table-bordered table-striped">
+                            <thead style="background-color:#5477cf;color:white;">
+                                <tr>
+                                    <th>Details</th>
+                                    <th>ಕಂತು 1</th>
+                                    <th>ಕಂತು 2</th>
+                                    <th>ಕಂತು 3</th>
+                                    <!-- Add more columns as needed -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ದೇಣಿಗೆ ಮೊತ್ತ</td>
+                                    <!-- Data will be inserted dynamically here -->
+                                </tr>
+                                <tr>
+                                    <td>ರಶೀದಿ ಸಂಖ್ಯೆ</td>
+                                    <!-- Data will be inserted dynamically here -->
+                                </tr>
+                                <tr>
+                                    <td>ಪಾವತಿ ದಿನಾಂಕ</td>
+                                    <!-- Data will be inserted dynamically here -->
+                                </tr>
+                                <tr>
+                                    <td>ಪಾವತಿ ರೀತಿ</td>
+                                    <!-- Data will be inserted dynamically here -->
+                                </tr>
+                                <tr>
+                                    <td>ವಹಿವಾಟು ಸಂಖ್ಯೆ</td>
+                                    <!-- Data will be inserted dynamically here -->
+                                </tr>
+                                <tr>
+                                    <td>ಪಾವತಿ ಸ್ಥಿತಿ</td>
+                                    <!-- Data will be inserted dynamically here -->
+                                </tr>
+                                <tr>
+                                    <td>ರಶೀದಿ ಮುದ್ರಿಸು</td>
+                                    <!-- Data will be inserted dynamically here -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <!--<button id="generateReceiptBtn" style="display:none;">Generate Receipt</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="receipt-container" id="receiptTemplate" style="display:none;">
+            <table style="width: 100%; border: 1px solid black;background-color:#baf8d9;color:black;">
+                <tr>
+                    <td colspan="3" style="text-align: center; font-weight: bold; font-size: 16px;">
+                        ॥ ಶ್ರೀ ಪತ್ರೇಶ್ವರ ಪ್ರಸನ್ನ ॥
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;vertical-align:top;">
+                        <img src="Images/Gavi_Logo.png" height="80" width="80" />
+                    </td>
+                    <td style="text-align: center; padding-bottom: 2px;line-height:20px !important;">
+                        <p style="font-size:18px;font-weight:bold">ಶ್ರೀ ಪತ್ರೇಶ್ವರ ದೇವಸ್ಥಾನದ ಸೇವಾ ಟ್ರಸ್ಟ್ (ರಿ)</p>
+                        <p style="font-size: 16px; font-weight: bold">Shree Patreshwar Devastana Seva Trust, Ⓡ, Yarehanchinal</p>
+                        <p style="font-size: 14px; font-weight: bold">ತಾ: ಕುಕನೂರು, ಜಿ: ಕೊಪ್ಪಳ</p>
+                        <p style="font-size: 16px; font-weight: bold; text-decoration:underline">Receipt/ದೇಣಿಗೆ ರಸೀದಿ</p>
+                    </td>
+                    <td style="text-align:left;vertical-align:top;">
+                        <img src="Images/Patreswara-Icon.png" height="80" width="80" style="border:solid 1px gray; border-radius:50px;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: left; font-size: 10pt !important; font-weight: bold !important;">
+                        Receipt No: <span id="receiptNo"></span>
+                    </td>
+                    <td style="text-align: right; font-size: 10pt !important; font-weight: bold !important;" colspan="2">
+                        Date: <span id="receiptDate"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="border-top: 1px dotted #04542a; padding-top: 2px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: 10pt !important;font-weight: bold !important; text-align: left;">
+                        Donor Name: <span id="donorName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: 10pt !important;font-weight: bold !important; text-align: left;">
+                        Amount Donated: ₹ <span id="donationAmount"></span> (<span id="donationAmountInWords"></span>)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: 10pt !important;font-weight: bold !important; text-align: left;">
+                        Address: <span id="donorAddress"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: left; font-weight: bold !important; font-size: 10pt !important;">
+                        Thank you for your generous donation! Your contribution will help us in our mission.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="border-top: 1px solid black;"></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center" style="background-color: #f2f2f2; padding: 10px;">
+        <p>&copy; 2025 Sri Patreswara Devastana Seva Trust. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-dark-forms@1.2.0/dist/bs5-dark-forms.min.js"></script>
+    <script src="js/script.js"></script> <!-- External JS -->
+    <script src="js/donations-index.js" defer></script> <!-- External JS -->
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Donation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/add-donation.js"></script>
+    <script src="js/script.js"></script>
+    <style>
+        .form-font{
+            font-size:11pt;
+            font-weight:bold;
+            line-height:4px;
+        }
+        input {
+            border-radius: 10px !important;
+            border: solid 1px #96aef5 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div id="nav-placeholder"></div>
+
+    <!--Banner-->
+    <div id="banner-placeholder"></div>
+
+    <div class="container mt-2 form-font" >
+        <h4 class="text-center">ಹೊಸ ದಾನಿಯನ್ನು ಸೇರಿಸಿ</h4>
+        <form id="donationForm">
+            <div class="form-group">              
+                <input placeholder="ದಾನಿ ಐಡಿ" type="number" class="form-control" id="userId" required>
+            </div>
+            <div class="form-group">               
+                <input placeholder="ದಾನಿ ಹೆಸರು English" type="text" class="form-control" id="nameEn" required>
+            </div>
+            <div class="form-group">
+                <input placeholder="ದಾನಿ ಹೆಸರು Kannada" type="text" class="form-control" id="nameKn" required>
+            </div>
+            <div class="form-group">
+                <input placeholder="ದಾನಿ ಸ್ಥಳ" type="text" class="form-control" id="place" required>
+            </div>
+            <div class="form-group">               
+                <input type="number" placeholder="ಸಂಪರ್ಕ ಸಂಖ್ಯೆ" class="form-control" id="contactNo" required>
+            </div>
+            <div class="form-group">
+                <input type="number" placeholder="ವಾಗ್ದಾನದ ಮೊತ್ತ" class="form-control" id="pledgeAmount" required>
+            </div>
+            <div class="form-group">
+                <input type="number" placeholder="ದೇಣಿಗೆ ಮೊತ್ತ" class="form-control" id="donatedAmount" required>
+            </div>
+            <div class="form-group">
+                <input type="number" placeholder="ರಶೀದಿ ಸಂಖ್ಯೆ" class="form-control" id="receiptNo" required>
+            </div>
+            <div class="form-group">
+                <input type="date" placeholder="ಪಾವತಿ ದಿನಾಂಕ" class="form-control" id="payDate" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="ಪಾವತಿ ರೀತಿ" class="form-control" id="payMode" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="ವಹಿವಾಟು ಸಂಖ್ಯೆ" class="form-control" id="transactionRefNo" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="ಸಲ್ಲಿಸುವವರು" class="form-control" id="createdBy" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

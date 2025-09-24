@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/adduser.css"> <!-- Link to external CSS file -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <script src="js/adduser.js"></script> <!-- Link to external JavaScript file -->
+    <script src="js/script.js"></script> <!-- Link to external JavaScript file -->
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Banner -->
+    <div id="banner-placeholder"></div>
+
+    <div class="container mt-2">
+        <h4 class="text-center header-style">ಹೊಸ ದಾನಿಗಳ ವಿವರಗಳನ್ನು ಸೇರಿಸಿ</h4>
+        <form id="addUserForm">
+            <div class="form-group">              
+                <input type="text" placeholder="ದಾನಿಯ ಹೆಸರು - Kn" class="form-control" id="name_Kn" required>
+            </div>
+            <div class="form-group">             
+                <input type="text" placeholder="ದಾನಿಯ ಹೆಸರು - En" class="form-control" id="name_En" required>
+            </div>
+            <div class="form-group">              
+                <input type="text" placeholder="ದಾನಿಯ ಸ್ಥಳ" class="form-control" id="place" required>
+            </div>
+            <div class="form-group">             
+                <input type="text" placeholder="ಸಂಪರ್ಕ ಸಂಖ್ಯೆ" class="form-control" id="contact_No" required>
+            </div>
+            <div class="form-group">
+                <input type="number" placeholder="ವಾಗ್ದಾನ ಮೊತ್ತ" class="form-control" id="pledge_Amount" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
