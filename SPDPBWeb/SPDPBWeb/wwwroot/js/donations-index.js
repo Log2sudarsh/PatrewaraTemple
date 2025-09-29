@@ -16,19 +16,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function showLoading() { if (loading) loading.style.display = 'block'; }
     function hideLoading() { if (loading) loading.style.display = 'none'; }
-
-    function updateTotalsUI({ totalPaid, totalPending, totalAmount }) {
-        if (totalPaidElement) totalPaidElement.textContent = fmt(totalPaid);
-        if (totalPendingElement) totalPendingElement.textContent = fmt(totalPending);
-        if (totalAmountElement) totalAmountElement.textContent = fmt(totalAmount);
-    }
-
+        
     function calculateTotals(data) {
         let totalPaid = 0;
         let totalPending = 0;
         let totalAmount = 0;
+        let totalPledge = 0;
 
         (data || []).forEach(user => {
+            totalPledge += Number(user.pledgeAmount) || 0;
             (user.donations || []).forEach(donation => {
                 const amt = Number(donation.donatedAmount) || 0;
                 totalAmount += amt;
@@ -37,7 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        updateTotalsUI({ totalPaid, totalPending, totalAmount });
+        updateTotalsUI({ totalPaid, totalPending, totalAmount, totalPledge });
+    }
+
+    function updateTotalsUI({ totalPaid, totalPending, totalAmount, totalPledge }) {
+        if (totalPaidElement) totalPaidElement.textContent = fmt(totalPaid);
+        if (totalPendingElement) totalPendingElement.textContent = fmt(totalPledge);
+        if (totalAmountElement) totalAmountElement.textContent = fmt(totalPledge - totalPaid); // Show pending pledge
     }
 
     function createRow(user, index) {
@@ -73,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         tableBody.innerHTML = '';
         let i = 0;
         (data || []).forEach(user => {
+            if (user.userId === 2404) return; // Skip user with userId 2
             i++;
             createRow(user, i);
         });
