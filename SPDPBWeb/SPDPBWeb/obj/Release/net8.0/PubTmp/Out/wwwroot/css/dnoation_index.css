@@ -1,0 +1,97 @@
+﻿table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.section-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+.section-text {
+    margin-bottom: 0;
+    font-size: 11pt;
+    line-height: 35px;
+}
+
+.section-sub-title {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.section-contact-msg {
+    font-size: 13pt;
+    font-weight: bold;
+    color: crimson;
+}
+
+.section-lable-text {
+    font-weight: bold;
+}
+
+.section-input-style {
+    height: 50px;
+    border-radius: 10px;
+    border-color: #85b3f2;
+}
+
+.section-card-title {
+    color: #1d69cc;
+}
+
+.modal-body {
+    padding: 10px;    
+    font-size: 10pt;
+    line-height:15px;
+}
+
+    .modal-body .section-title {
+        margin-bottom: 15px;
+        font-size: 14pt;
+    }
+
+    .modal-body .section-text {
+        margin-bottom: 10px;
+        font-size: 12pt;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 90%;
+        margin: 1.75rem auto;
+    }
+}
+
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.4em;
+}
+
+/*******************************RECEIPT STYLES****************************/
+.body-font {
+    font-size: 10pt !important;font-weight: bold !important;
+}
+
+.details-font {
+    font-size: 9pt !important;font-weight: bold !important;
+}
+.hearder-font {
+    font-size: 14pt !important;font-weight: bold;
+}
+
+.heighlight-font {
+    font-size: 11pt !important;font-weight: bold !important;
+}

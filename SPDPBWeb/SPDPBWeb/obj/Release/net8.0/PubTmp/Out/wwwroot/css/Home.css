@@ -1,0 +1,131 @@
+﻿
+.about-card {
+    width: 90%;
+    max-width: 1600px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    background-color: #8BDE29;
+    background-image: linear-gradient(to bottom right, #8BDE29,white);
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+}
+
+.about-card-2 {
+    width: 90%;
+    max-width: 1600px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    background-color: #70BD6B;
+    background-image: linear-gradient(to bottom right, #70BD6B,white);
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+}
+
+.about-card-3 {
+    width: 90%;
+    max-width: 1600px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+}
+
+.about-card-4 {
+    width: 90%;
+    max-width: 1600px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+    background-color: #DEFFD2;
+    background-image: linear-gradient(to bottom right, #DEFFD2,white);
+}
+
+.about-card-5 {
+    width: 90%;
+    max-width: 1600px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+    background-color: #94D1EB;
+    background-image: linear-gradient(to bottom right, #94D1EB,white);
+}
+
+.card-img {
+    border-radius: 15px 0 0 15px;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.card-img-min {
+    border-radius: 15px 0 0 15px;
+    
+    height: 100%;
+    width: 100%;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title-text {
+    font-weight: bold;
+    font-size: 20pt;
+    color: green;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+.card-text-no-bold {
+    font-size: 16pt;
+}
+
+.card-text {
+    font-size: 14pt;
+}
+
+.about-card .btn {
+    font-size: 1.3rem;
+    padding: 20px 30px;
+}
+
+.card-img-top {
+    height: 100px;
+    width: 90px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+.card {
+    border-radius: 15px;
+    border-color: green;
+}
+
+.card-no-color {
+    border-radius: 15px;
+    padding: 10px;
+    border-right: solid 1px #82DB7C;
+
+}
+
+.card-border-radius {
+    border-radius: 15px;
+}
+
+.navbar-brand img.logo {
+    max-height: 80px !important; /* Default for all screen sizes */
+    margin-left: 5px; /* Left margin */
+}

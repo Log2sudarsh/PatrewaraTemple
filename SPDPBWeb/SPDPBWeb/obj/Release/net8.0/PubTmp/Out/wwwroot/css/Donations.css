@@ -1,0 +1,120 @@
+﻿/* General styles for table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.section-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+.section-text {
+    margin-bottom: 0;
+    font-size: 11pt;
+    line-height: 35px;
+}
+
+.section-sub-title {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.section-contact-msg {
+    font-size: 13pt;
+    font-weight: bold;
+    color: crimson;
+}
+
+.section-lable-text {
+    font-weight: bold;
+}
+
+.section-input-style {
+    height: 50px;
+    border-radius: 10px;
+    border-color: #85b3f2;
+}
+
+.section-card-title {
+    color: #1d69cc;
+}
+
+.modal-body {
+    padding: 10px;
+}
+
+    .modal-body .section-title {
+        margin-bottom: 15px;
+        font-size: 14pt;
+    }
+
+    .modal-body .section-text {
+        margin-bottom: 10px;
+        font-size: 12pt;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 90%;
+        margin: 1.75rem auto;
+    }
+
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table, th, td {
+        width: 100%;
+        display: block;
+        text-align: left;
+        padding: 8px;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+        td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 45%;
+            padding-left: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+}
+
+input, label {
+    font-size: 11pt !important;
+}

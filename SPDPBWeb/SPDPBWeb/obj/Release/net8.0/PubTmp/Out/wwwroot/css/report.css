@@ -1,0 +1,94 @@
+﻿/* Styling for cards */
+.card {
+    background-color: #8ff6b2;
+    border-radius: 10px;
+    padding: 0px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filter-section {
+    background-color: #c5e4f8;
+    border-radius: 10px;
+    padding:20px 10px 0 10px; 
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+.input-style {
+    height: 25px !important;
+    font-size: 9pt;
+}
+
+/* Toggle filter button */
+#filter-menu-toggle {
+    width: 100%;
+}
+
+/* Hide filter form by default */
+#filter-form {
+    display: none;
+}
+
+/* Radio button styles */
+.form-group label {
+    margin-right: 5px;
+   
+}
+
+.btn-filter{
+    width:80px !important;
+    border-radius:200px;   
+    font-size:10pt;   
+    margin:10px 0 0 0;
+}
+
+.btn-clear {
+    width: 80px !important;
+    border-radius: 200px;
+    font-size: 10pt;
+    background-color: red !important;
+    border-block-color: red;
+    margin: 0 0 10px 0;
+}
+
+    /* Media Query for Responsive Design */
+    @media (max-width: 767px) {
+        .card {
+        margin-bottom: 10px;
+    }
+}
+
+.bg-color-style{
+    background-color:#d6fbf2;
+    color:black;
+    
+}
+
+.card-body{
+   padding:10px 0 0 20px !important;
+}
+
+.section-title{
+    color:green !important;
+    font-size:15pt;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.summary-section {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+    .summary-section p {
+        margin: 5px 0;
+        font-weight: bold;
+    }

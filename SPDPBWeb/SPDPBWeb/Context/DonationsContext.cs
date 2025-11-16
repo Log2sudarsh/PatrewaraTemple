@@ -118,6 +118,9 @@ namespace SPDPBWeb.Context
                 entity.Property(e => e.ReceiptType)
                 .HasColumnName("receipt_type");
 
+                entity.Property(e => e.DonationType)
+               .HasColumnName("donation_type");
+
                 // Relationship
                 entity.HasOne(d => d.User)
                       .WithMany(u => u.Donations)

@@ -1,0 +1,66 @@
+﻿table, th, td {
+    border: 1px solid black;
+    padding: 8px;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+input {
+    margin: 5px;
+}
+
+.form-section {
+    margin-top: 20px;
+}
+
+.nav-item-text-style {
+    font-size: 14pt;
+    color: white !important;
+    font-weight: bold;
+}
+
+.logo-text {
+    font-size: 14pt;
+    font-family: Cambria;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.details-row {
+    background-color: #f9f9f9;
+    font-size: 0.8rem;
+}
+
+#userTable {
+    font-size: 0.85rem;
+}
+
+#userTable td, #userTable th {
+        padding: 0.4rem 0.5rem;
+        vertical-align: middle;
+        font-size: 0.85rem;
+    }
+
+#userTable {
+    border-color: #e0e0e0;
+}
+
+    #userTable th,
+    #userTable td {
+        border-color: #e0e0e0; /* Light gray */
+    }
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    display: none;
+    color: #dc3545;
+    font-size: 0.875em;
+}

@@ -1,0 +1,200 @@
+[
+  {
+    "ContainingType": "SPDPBWeb.Controllers.BilvaUserController",
+    "Method": "GetAllUsersWithPlants",
+    "RelativePath": "api/BilvaUser",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDPBWeb.Controllers.BilvaUserController",
+    "Method": "GetUserWithPlant",
+    "RelativePath": "api/BilvaUser/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDPBWeb.Controllers.BilvaUserController",
+    "Method": "CreateUserWithPlant",
+    "RelativePath": "api/BilvaUser/adduser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "SPDPBWeb.DTOs.UserWithPlantDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDPBWeb.Controllers.BilvaUserController",
+    "Method": "GetAll",
+    "RelativePath": "api/BilvaUser/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDPBWeb.Controllers.BilvaUserController",
+    "Method": "DeleteUserWithPlant",
+    "RelativePath": "api/BilvaUser/deleteuser/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDPBWeb.Controllers.BilvaUserController",
+    "Method": "UpdateUserWithPlant",
+    "RelativePath": "api/BilvaUser/updateuser/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "SPDPBWeb.DTOs.UserWithPlantDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDSTApi.Controllers.DonationsController",
+    "Method": "GetDonations",
+    "RelativePath": "api/Donations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SPDPBWeb.Models.UserDonationsDto, SPDPBWeb, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SPDSTApi.Controllers.DonationsController",
+    "Method": "PostDonation",
+    "RelativePath": "api/Donations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "donationDto",
+        "Type": "SPDPBWeb.Models.DonationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SPDSTApi.Donation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SPDSTApi.Controllers.DonationsController",
+    "Method": "UpdateUserDetails",
+    "RelativePath": "api/Donations/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedUser",
+        "Type": "SPDPBWeb.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDSTApi.Controllers.DonationsController",
+    "Method": "AddUser",
+    "RelativePath": "api/Donations/adduser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userDto",
+        "Type": "SPDPBWeb.Models.UserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDSTApi.Controllers.DonationsController",
+    "Method": "GetDonorReport",
+    "RelativePath": "api/Donations/report",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SPDPBWeb.Controllers.UserController",
+    "Method": "AddUser",
+    "RelativePath": "api/User/api/users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "SPDPBWeb.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

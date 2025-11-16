@@ -13,6 +13,7 @@ namespace SPDSTApi
         public DateTime? PayDate { get; set; }
         public string? PayMode { get; set; }
         public string? TransactionNo { get; set; }
+        public string? DonationType { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string? ModifiedBy { get; set; }

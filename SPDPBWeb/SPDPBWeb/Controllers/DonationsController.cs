@@ -11,6 +11,7 @@ namespace SPDSTApi.Controllers
     public class DonationsController : ControllerBase
     {
         private readonly DonationsContext _context;
+        private readonly List<int> _panchayatReceipts = new() { 68, 69, 70, 71, 72, 73, 74 };
 
         public DonationsController(DonationsContext context)
         {
@@ -20,52 +21,100 @@ namespace SPDSTApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDonationsDto>>> GetDonations()
         {
-            List<UserDonationsDto> donations = new List<UserDonationsDto>();
-            try
+            var donations = await _context.Users
+                .GroupJoin(
+                    _context.Donations,
+                    user => user.UserId,
+                    donation => donation.UserId,
+                    (user, donations) => new { user, donations }
+                )
+                .Select(joined => new UserDonationsDto
+                {
+                    UserId = joined.user.UserId,
+                    NameEn = joined.user.NameEn,
+                    NameKn = joined.user.NameKn,
+                    Place = joined.user.Place,
+                    ContactNo = joined.user.ContactNo,
+                    PledgeAmount = joined.user.PledgeAmount,
+                    TotalDonatedAmount = joined.donations
+                        .Where(d => d.PaymentStatus == true)
+                        .Sum(d => (int?)d.DonatedAmount) ?? 0,
+                    Donations = joined.donations.Select(d => new DonationDto
+                    {
+                        DonationId = d.DonationId,
+                        DonatedAmount = d.DonatedAmount,
+                        ReceiptNo = d.ReceiptNo,
+                        PayDate = d.PayDate,
+                        PayMode = d.PayMode,
+                        PaymentStatus = d.PaymentStatus,
+                        TransactionNo = d.TransactionNo,
+                        ReceiptType = d.ReceiptType,
+                        DonationType = d.DonationType,   
+                        CreatedBy = d.CreatedBy,
+                        CreatedOn = d.CreatedOn,
+                        ModifiedBy = d.ModifiedBy,
+                        ModifiedOn = d.ModifiedOn
+                    }).ToList()
+                }).ToListAsync();
+
+            // 🧩 Now separate Panchayat type donations
+            var panchayatDonations = donations
+             .SelectMany(u => u.Donations.Select(d => new
+             {
+                 Donation = d,
+                 User = u
+             }))
+             .Where(x => x.Donation.DonationType == "PANCHAYAT")
+             .Select(x => new DonationDto
+             {
+                 DonationId = x.Donation.DonationId,
+                 DonatedAmount = x.Donation.DonatedAmount,
+                 ReceiptNo = x.Donation.ReceiptNo,
+                 PayDate = x.Donation.PayDate,
+                 PayMode = x.Donation.PayMode,
+                 PaymentStatus = x.Donation.PaymentStatus,
+                 TransactionNo = x.Donation.TransactionNo,
+                 ReceiptType = x.Donation.ReceiptType,
+                 DonationType = x.Donation.DonationType,
+                 CreatedBy = x.Donation.CreatedBy,
+                 CreatedOn = x.Donation.CreatedOn,
+                 ModifiedBy = x.Donation.ModifiedBy,
+                 ModifiedOn = x.Donation.ModifiedOn,
+
+                 // ✅ Include user info from the joined object
+                 UserId = x.User.UserId,
+                 NameKn = x.User.NameKn,
+                 NameEn = x.User.NameEn,
+                 Place = x.User.Place,
+                 ContactNo = x.User.ContactNo
+             })
+             .ToList();
+
+            if (panchayatDonations.Any())
             {
-                  donations = await _context.Users
-                            .GroupJoin(
-                                _context.Donations,
-                                user => user.UserId,
-                                donation => donation.UserId,
-                                (user, donations) => new { user, donations }
-                            )
-                            .Select(joined => new UserDonationsDto
-                            {
-                                UserId = joined.user.UserId,
-                                NameEn = joined.user.NameEn,
-                                NameKn = joined.user.NameKn,
-                                Place = joined.user.Place,
-                                ContactNo = joined.user.ContactNo,
-                                PledgeAmount = joined.user.PledgeAmount,
-                                TotalDonatedAmount = joined.donations
-                                         .Where(d => d.PaymentStatus == true)
-                                         .Sum(d => (int?)d.DonatedAmount) ?? 0,
-                                Donations = joined.donations.Select(d => new DonationDto
-                                {
-                                    DonationId = d.DonationId,
-                                    DonatedAmount = d.DonatedAmount,
-                                    ReceiptNo = d.ReceiptNo,
-                                    PayDate = d.PayDate,
-                                    PayMode = d.PayMode,
-                                    PaymentStatus = d.PaymentStatus,
-                                    TransactionNo = d.TransactionNo,
-                                    ReceiptType=d.ReceiptType,
-                                    CreatedBy = d.CreatedBy,
-                                    CreatedOn = d.CreatedOn,
-                                    ModifiedBy = d.ModifiedBy,
-                                    ModifiedOn = d.ModifiedOn
-                                }).ToList()
-                            }).OrderByDescending(d => d.TotalDonatedAmount)                            
-                            .ToListAsync();
-               
+                var total = panchayatDonations.Sum(d => d.DonatedAmount ?? 0);
+
+                // Remove Panchayat donations from user-level donations
+                foreach (var dto in donations)
+                    dto.Donations.RemoveAll(d => d.DonationType == "PANCHAYAT");
+
+                // Add virtual Panchayat record
+                donations.Add(new UserDonationsDto
+                {
+                    UserId = 9999,
+                    NameKn = "ಗ್ರಾಮ ಪಂಚಾಯತ್ ಸದಸ್ಯರು :2020-2025 ",
+                    NameEn = "PANCHAYAT_CONTRIBUTION",
+                    Place = "Yarehanchinal",
+                    PledgeAmount = 0,
+                    TotalDonatedAmount = total,
+                    Donations = panchayatDonations
+                });
             }
 
-            catch(Exception ex)
-            {
-
-            }
-            return Ok(donations);
+            return Ok(donations
+                //.Where(d => d.TotalDonatedAmount > 0)
+                .OrderByDescending(d => d.TotalDonatedAmount)
+                .ToList());
         }
 
 
@@ -150,7 +199,7 @@ namespace SPDSTApi.Controllers
         {
             var donation = new Donation
             {
-                UserId = donationDto.User_Id,
+                UserId = donationDto.UserId,
                 DonatedAmount = donationDto.DonatedAmount,
                 ReceiptNo = donationDto.ReceiptNo,
                 PayDate = DateTime.SpecifyKind((DateTime)donationDto.PayDate, DateTimeKind.Utc),
